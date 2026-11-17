@@ -78,6 +78,19 @@ def test_health_route():
     assert response.json()["status"] == "ok"
 
 
+def test_homepage_docs_and_frontend_assets_are_served():
+    homepage = client.get("/")
+    assert homepage.status_code == 200
+    assert homepage.headers["content-type"].startswith("text/html")
+    assert "ResumeIQ | Make every" in homepage.text
+
+    assert client.get("/docs").status_code == 200
+    assert client.get("/api/health").status_code == 200
+    assert client.get("/css/styles.css").status_code == 200
+    assert client.get("/css/research.css").status_code == 200
+    assert client.get("/js/app.js").status_code == 200
+
+
 def test_analyze_pdf_returns_explainable_results():
     response = client.post(
         "/api/analyze",

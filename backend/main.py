@@ -1,6 +1,7 @@
 from pathlib import Path
 
 from fastapi import FastAPI
+from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
 from backend.routes.api import router
@@ -15,4 +16,11 @@ app = FastAPI(
     version="1.0.0",
 )
 app.include_router(router)
+
+
+@app.get("/", include_in_schema=False)
+def homepage() -> FileResponse:
+    return FileResponse(FRONTEND / "index.html", media_type="text/html")
+
+
 app.mount("/", StaticFiles(directory=FRONTEND, html=True), name="frontend")
