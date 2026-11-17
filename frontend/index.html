@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f7fb">
+  <meta name="description" content="Explainable resume analysis, compression, and job matching.">
+  <title>ResumeIQ | Make every line count</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/research.css">
+  <script src="/js/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="ResumeIQ home"><span class="brand-mark">r<span>i</span></span><span>resume<span class="brand-light">iq</span></span></a>
+    <nav aria-label="Main navigation">
+      <a href="#home">Home</a>
+      <a href="#workspace">Workspace</a>
+      <a href="#research">Research</a>
+      <a href="#about">About</a>
+    </nav>
+    <a class="topbar-cta" href="#workspace">Analyze a resume <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main id="home">
+    <section class="intro" aria-labelledby="page-title">
+      <div class="intro-copy">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> RESUME OPTIMIZATION, WITH RECEIPTS</p>
+        <h1 id="page-title">Make every<br><span>line count.</span></h1>
+        <p class="intro-text">Understand how your resume maps to a role, tighten the language without losing your story, and see exactly how every score is calculated.</p>
+        <div class="intro-proof"><span class="proof-icon">01</span><span>Private by design</span><i></i><span>Explainable by default</span></div>
+      </div>
+      <div class="intro-art" aria-hidden="true">
+        <div class="art-paper"><div class="paper-head"><b></b><span></span><span></span></div><div class="paper-rule"></div><div class="paper-label">EXPERIENCE</div><div class="paper-line wide"></div><div class="paper-line"></div><div class="paper-line short"></div><div class="paper-label second">SKILLS</div><div class="paper-tags"><i></i><i></i><i></i></div></div>
+        <div class="art-note"><span>↘</span><div><b>Less noise.</b><small>Same story.</small></div></div>
+        <div class="art-seal">IQ<br><span>INSIGHT</span></div>
+      </div>
+    </section>
+
+    <section class="workspace-section" id="workspace">
+      <div class="section-heading">
+        <div><p class="eyebrow">YOUR WORKSPACE</p><h2>Start with the role.</h2></div>
+        <p class="section-note">Your resume is processed in memory and isn’t saved.</p>
+      </div>
+      <form class="analysis-form" id="analysis-form">
+        <div class="form-grid">
+          <div class="upload-column">
+            <label class="field-label" for="resume-file">Resume document <span>PDF or DOCX · 8 MB max</span></label>
+            <label class="dropzone" id="dropzone" for="resume-file">
+              <input id="resume-file" name="file" type="file" accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required>
+              <span class="upload-mark" aria-hidden="true">↑</span>
+              <strong id="file-title">Drop your resume here</strong>
+              <span id="file-description">or <u>browse files</u></span>
+            </label>
+          </div>
+          <div class="criteria-column">
+            <label class="field-label" for="target-role">Target role <span>Optional</span></label>
+            <input id="target-role" name="target_role" class="text-input" type="text" placeholder="e.g. Product data analyst">
+            <label class="field-label jd-label" for="job-description">Job description <span>At least 20 characters</span></label>
+            <textarea id="job-description" name="job_description" class="text-input job-input" required minlength="20" placeholder="Paste the role requirements. We’ll compare the language and skills against your resume."></textarea>
+            <div class="form-foot"><span><b class="privacy-dot"></b> Private session · no account required</span><button class="button button-primary" type="submit" id="analyze-button"><span>Analyze resume</span><span aria-hidden="true">→</span></button></div>
+          </div>
+        </div>
+        <div class="loading-row" id="loading-row" hidden><span class="loader"></span><span>Reading your resume and comparing role signals…</span></div>
+      </form>
+    </section>
+
+    <section class="results-section" id="results" hidden>
+      <div class="section-heading result-heading">
+        <div><p class="eyebrow">ROLE ALIGNMENT <span class="live-pill"><i></i> ANALYSIS READY</span></p><h2 id="result-title">Your results</h2></div>
+        <button class="button button-quiet" id="new-analysis" type="button">New analysis <span aria-hidden="true">↗</span></button>
+      </div>
+      <div class="score-layout">
+        <article class="score-panel">
+          <div class="score-topline"><span>ATS compatibility score</span><span class="info-mark" title="A transparent heuristic, not a hiring or ATS outcome prediction.">i</span></div>
+          <div class="score-main"><div class="score-ring" id="score-ring"><div><strong id="overall-score">--</strong><small> / 100</small></div></div><div class="score-copy"><b id="score-label">Awaiting analysis</b><span>Role-specific evidence & structure</span></div></div>
+          <div class="score-divider"></div>
+          <div class="score-breakdown"><div><span>Job keyword coverage</span><b id="keyword-score">--%</b></div></div>
+          <p class="disclaimer">This score is a transparent research heuristic. It does not predict acceptance by an actual ATS or employer.</p>
+          <p class="disclaimer" id="score-method"></p>
+        </article>
+        <article class="detail-panel keyword-panel">
+          <div class="panel-title"><div><span class="panel-kicker">JOB DESCRIPTION MATCH</span><h3>Matched and missing keywords</h3></div><span class="count-label" id="matched-count">0 matched</span></div>
+          <p class="detail-intro">Missing terms are not recommendations to claim a skill. Include them only when they reflect your experience.</p>
+          <div class="keyword-group"><span class="group-label"><i class="status-dot matched-dot"></i> Matched keywords</span><div class="chips" id="matched-keywords"></div></div>
+          <div class="keyword-group"><span class="group-label"><i class="status-dot missing-dot"></i> Missing keywords</span><div class="chips" id="missing-keywords"></div></div>
+        </article>
+      </div>
+
+      <article class="detail-panel suggestion-panel">
+        <div class="panel-title"><div><span class="panel-kicker">NEXT STEPS</span><h3>Resume improvement suggestions</h3></div></div>
+        <ul class="suggestion-list" id="recommendation-list"></ul>
+      </article>
+
+      <section class="optimize-section" id="optimization">
+        <div class="section-heading optimize-heading"><div><p class="eyebrow">INTELLIGENT COMPRESSION</p><h2>Keep the substance.<br><span>Lose the filler.</span></h2></div><div class="optimize-action"><p>Rule-based edits simplify selected phrases. Potentially repeated details are flagged for your review; no resume content is automatically deleted.</p><button class="button button-primary" id="optimize-button" type="button">Optimize resume <span aria-hidden="true">→</span></button></div></div>
+        <div class="optimization-results" id="optimization-results" hidden>
+          <div class="metric-strip"><div><span>Original length</span><b id="original-count">--</b><small>words</small></div><div><span>Optimized length</span><b id="optimized-count">--</b><small>words</small></div></div>
+          <div class="review-toolbar"><div><b>Review proposed resume</b><span>Accept or reject the generated version. You can edit the text before export.</span></div><div class="review-actions"><button class="button button-outline" id="reject-edits" type="button">Keep original</button><button class="button button-primary" id="accept-edits" type="button">Use optimized</button></div></div>
+          <aside class="duplicate-review" id="duplicate-review" hidden><b>Possible repeated details</b><ul id="duplicate-list"></ul><p>Suggestions only. Both resume entries have been kept for your review.</p></aside>
+          <div class="compare-grid"><div class="text-review"><label for="original-text">Original</label><textarea id="original-text" readonly></textarea></div><div class="text-review proposed-review"><label for="optimized-text">Proposed · editable</label><textarea id="optimized-text" spellcheck="true"></textarea></div></div>
+          <div class="export-row"><div><b id="review-status">Proposed changes ready for review</b><span>Preview or download the selected version as PDF.</span></div><div class="export-actions"><button class="button button-outline" id="preview-pdf" type="button">Preview PDF</button><button class="button button-primary" id="download-pdf" type="button"><span aria-hidden="true">↓</span> PDF</button></div></div>
+        </div>
+      </section>
+    </section>
+
+    <section class="research-section" id="research">
+      <div class="research-heading"><div><p class="eyebrow">RESEARCH</p><h2>Three clear measurements.</h2></div><p id="research-status">Analyze a resume to calculate its metrics. No sample values are shown.</p></div>
+      <div class="research-metrics">
+        <article><span>Compression percentage</span><strong id="research-compression">Not calculated</strong><p>(original words − optimized words) ÷ original words × 100</p></article>
+        <article><span>Keyword coverage</span><strong id="research-keywords">Not calculated</strong><p>Matched job-description keywords ÷ extracted job-description keywords × 100</p></article>
+        <article><span>Information retention</span><strong id="research-retention">Not calculated</strong><p>Original word occurrences retained ÷ total original word occurrences × 100</p></article>
+      </div>
+    </section>
+
+    <section class="method-section" id="about">
+      <div class="method-heading"><div><p class="eyebrow">ABOUT RESUMEIQ</p><h2>Clear method.<br><span>Inspectable output.</span></h2></div><p>ResumeIQ combines document extraction, TF-IDF keyword matching, phrase simplification, and duplicate-review suggestions. It favors transparent measures over opaque predictions.</p></div>
+      <div class="method-steps"><article><span>01</span><h3>Extract</h3><p>Read selectable text from PDF and DOCX in memory. Image-only scans are clearly reported.</p></article><article><span>02</span><h3>Compare</h3><p>Match resume wording against job-description keywords using TF-IDF.</p></article><article><span>03</span><h3>Refine</h3><p>Simplify selected phrases and flag potentially repeated details for review without deleting content.</p></article><article><span>04</span><h3>Measure</h3><p>Report compression, keyword coverage, and information retention from the submitted text.</p></article></div>
+    </section>
+  </main>
+  <footer class="footer"><a class="brand" href="#home"><span class="brand-mark">r<span>i</span></span><span>resume<span class="brand-light">iq</span></span></a><span>Research prototype · scores are informational, not hiring advice.</span><a href="#about">About ResumeIQ ↑</a></footer>
+  <dialog class="pdf-preview-dialog" id="pdf-preview-dialog" aria-labelledby="pdf-preview-title"><div class="pdf-preview-header"><h2 id="pdf-preview-title">Optimized resume preview</h2><button class="button button-quiet" id="close-pdf-preview" type="button" aria-label="Close PDF preview">Close</button></div><iframe id="pdf-preview-frame" title="PDF preview"></iframe></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
